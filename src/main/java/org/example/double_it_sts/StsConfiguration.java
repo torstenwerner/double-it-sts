@@ -41,7 +41,8 @@ public class StsConfiguration {
         endpoint.setServiceName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}SecurityTokenService"));
         endpoint.setEndpointName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}STS_Port"));
         endpoint.setBindingUri(SOAPBinding.SOAP12HTTP_BINDING);
-        endpoint.publish("/sts"); // http://localhost:8080/services/sts?wsdl
+        endpoint.setPublishedEndpointUrl("http://localhost:8080/services/sts");
+        endpoint.publish("/sts");
         return endpoint;
     }
 }
