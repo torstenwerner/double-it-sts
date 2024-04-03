@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.xml.namespace.QName;
 import java.util.List;
 
+import static org.apache.cxf.rt.security.SecurityConstants.*;
+
 @Configuration
 public class CxfStsConfiguration {
     @SneakyThrows
@@ -28,6 +30,7 @@ public class CxfStsConfiguration {
         stsProperties.setEncryptionUsername("client");
         stsProperties.setSignatureCryptoProperties("clientstore.properties");
         stsProperties.setSignatureUsername("client");
+        stsProperties.configureProperties();
         provider.setStsProperties(stsProperties);
         
         final var service = new StaticService();
@@ -44,6 +47,11 @@ public class CxfStsConfiguration {
         endpoint.setEndpointName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}STS_Port"));
         endpoint.setBindingUri(SOAPBinding.SOAP12HTTP_BINDING);
         endpoint.setPublishedEndpointUrl("http://localhost:8080/services/sts");
+
+        endpoint.getProperties().put(CALLBACK_HANDLER, new ClientCallbackHandler());
+        endpoint.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
+        endpoint.getProperties().put(SIGNATURE_USERNAME, "client");
+
         endpoint.publish("/sts");
         return endpoint;
     }
