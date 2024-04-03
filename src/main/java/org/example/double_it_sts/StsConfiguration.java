@@ -12,6 +12,7 @@ import org.apache.cxf.ws.security.sts.provider.SecurityTokenServiceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.xml.namespace.QName;
 import java.util.List;
 
 @Configuration
@@ -36,6 +37,9 @@ public class StsConfiguration {
     @Bean
     public Endpoint sts(Bus bus, SecurityTokenServiceProvider stsProvider) {
         final var endpoint = new EndpointImpl(bus, stsProvider);
+        endpoint.setWsdlLocation("DoubleSTSService.wsdl");
+        endpoint.setServiceName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}SecurityTokenService"));
+        endpoint.setEndpointName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}STS_Port"));
         endpoint.setBindingUri(SOAPBinding.SOAP12HTTP_BINDING);
         endpoint.publish("/sts"); // http://localhost:8080/services/sts?wsdl
         return endpoint;

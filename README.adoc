@@ -12,3 +12,9 @@ STS addresses:
 
 . http://localhost:8080/services/sts?wsdl
 . http://localhost:8080/services/sts/mex?wsdl
+
+== Create keystores
+
+----
+keytool -genkey -keystore src/main/resources/clientstore.p12 -alias client -storepass changeit -keyalg RSA -validity 3650 -dname CN=client
+----
