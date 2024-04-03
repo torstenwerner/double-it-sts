@@ -69,6 +69,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly "org.apache.cxf:cxf-rt-ws-mex:${cxfVersion}"
 }
 
 // WSDL Java Classes Generation
@@ -76,10 +77,10 @@ import io.mateo.cxf.codegen.wsdl2java.Wsdl2Java
 
 tasks.register("wsdl2javaDoubleItService", Wsdl2Java) {
     toolOptions {
-//        wsdl.set("$projectDir/src/main/resources/DoubleIt.wsdl")
-//        wsdlLocation.set("classpath:DoubleIt.wsdl")
-        wsdl.set("$projectDir/src/main/resources/DoubleIt-simple.wsdl")
-        wsdlLocation.set("classpath:DoubleIt-simple.wsdl")
+        wsdl.set("$projectDir/src/main/resources/DoubleIt.wsdl")
+        wsdlLocation.set("classpath:DoubleIt.wsdl")
+//        wsdl.set("$projectDir/src/main/resources/DoubleIt-simple.wsdl")
+//        wsdlLocation.set("classpath:DoubleIt-simple.wsdl")
         extraArgs.add("-xjc-classpath")
         extraArgs.add("-xjc${project.configurations.cxfCodegen.asPath}")
         extraArgs.add("-xjc-Xfluent-api")

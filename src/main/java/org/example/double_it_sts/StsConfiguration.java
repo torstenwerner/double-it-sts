@@ -27,9 +27,9 @@ public class StsConfiguration {
 //        stsProperties.setCallbackHandler(callbacks -> {});
         provider.setStsProperties(stsProperties);
         
-        final var attributeService = new StaticService();
-        attributeService.setEndpoints(List.of("http://localhost:8080/services/double-it"));
-        provider.setServices(List.of(attributeService));
+        final var service = new StaticService();
+        service.setEndpoints(List.of("http://localhost:8080/services/double-it"));
+        provider.setServices(List.of(service));
         return provider;
     }
 

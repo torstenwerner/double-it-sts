@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CxfServiceConfiguration {
     @Bean
-    public Endpoint endpoint(Bus bus, DoubleItPortType doubleItPortType) {
-        EndpointImpl endpoint = new EndpointImpl(bus, doubleItPortType);
+    public Endpoint endpoint(Bus bus, DoubleItPortType port) {
+        EndpointImpl endpoint = new EndpointImpl(bus, port);
         endpoint.publish("/double-it");
         return endpoint;
     }

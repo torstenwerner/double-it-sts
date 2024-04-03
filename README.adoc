@@ -8,4 +8,7 @@ Test it manually:
 curl --header "Content-Type: text/xml;charset=UTF-8" --data @src/test/manual/service-request.xml http://localhost:8080/services/double-it
 ----
 
-STS address: http://localhost:8080/services/sts?wsdl
+STS addresses:
+
+. http://localhost:8080/services/sts?wsdl
+. http://localhost:8080/services/sts/mex?wsdl
