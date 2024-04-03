@@ -16,16 +16,18 @@ import javax.xml.namespace.QName;
 import java.util.List;
 
 @Configuration
-public class StsConfiguration {
+public class CxfStsConfiguration {
     @SneakyThrows
     @Bean
     public SecurityTokenServiceProvider securityTokenServiceProvider() {
         final var provider = new DefaultSecurityTokenServiceProvider();
         
         final var stsProperties = new StaticSTSProperties();
-        stsProperties.setSignatureUsername("signatureUsername");
-        stsProperties.setIssuer("issuer");
-//        stsProperties.setCallbackHandler(callbacks -> {});
+        stsProperties.setCallbackHandler(new ClientCallbackHandler());
+        stsProperties.setEncryptionCryptoProperties("clientstore.properties");
+        stsProperties.setEncryptionUsername("client");
+        stsProperties.setSignatureCryptoProperties("clientstore.properties");
+        stsProperties.setSignatureUsername("client");
         provider.setStsProperties(stsProperties);
         
         final var service = new StaticService();

@@ -17,4 +17,6 @@ STS addresses:
 
 ----
 keytool -genkey -keystore src/main/resources/clientstore.p12 -alias client -storepass changeit -keyalg RSA -validity 3650 -dname CN=client
+keytool -genkey -keystore src/main/resources/stsstore.p12 -alias sts -storepass changeit -keyalg RSA -validity 3650 -dname CN=sts
+keytool -genkey -keystore src/main/resources/serverstore.p12 -alias server -storepass changeit -keyalg RSA -validity 3650 -dname CN=server
 ----
