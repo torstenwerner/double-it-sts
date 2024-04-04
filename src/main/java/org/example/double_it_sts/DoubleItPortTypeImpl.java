@@ -4,7 +4,7 @@ import jakarta.jws.WebService;
 import org.example.contract.doubleit.DoubleItPortType;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("service")
 @WebService(targetNamespace = "http://www.example.org/contract/DoubleIt",
         portName = "DoubleItPort",
         serviceName = "DoubleItService",

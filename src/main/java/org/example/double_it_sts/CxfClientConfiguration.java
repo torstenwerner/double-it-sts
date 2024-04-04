@@ -1,8 +1,11 @@
 package org.example.double_it_sts;
 
+import jakarta.xml.ws.BindingProvider;
 import org.apache.cxf.Bus;
 import org.apache.cxf.ext.logging.LoggingFeature;
 import org.apache.cxf.ws.security.trust.STSClient;
+import org.example.contract.doubleit.DoubleItPortType;
+import org.example.contract.doubleit.DoubleItService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,5 +39,15 @@ public class CxfClientConfiguration {
         stsClient.getOutInterceptors().add(cleartextLogger);
 
         return stsClient;
+    }
+
+    @Bean("client")
+    public DoubleItPortType client(STSClient stsClient) {
+        final var service = new DoubleItService();
+        final var port = service.getDoubleItPort();
+        final var requestContext = ((BindingProvider) port).getRequestContext();
+        requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/services/double-it");
+        requestContext.put(STS_CLIENT, stsClient);
+        return port;
     }
 }
