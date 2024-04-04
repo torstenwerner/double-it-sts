@@ -2,18 +2,14 @@
 
 Service address: http://localhost:8080/services/double-it?wsdl
 
-Test it manually:
-
-----
-curl --header "Content-Type: text/xml;charset=UTF-8" --data @src/test/manual/service-request.xml http://localhost:8080/services/double-it
-----
-
 STS addresses:
 
 . http://localhost:8080/services/sts?wsdl
 . http://localhost:8080/services/sts/mex?wsdl
 
 == Create keystores
+
+How to create fresh keystores:
 
 ----
 keytool -genkey -keystore src/main/resources/clientstore.p12 -alias client -storepass changeit -keyalg RSA -validity 3650 -dname CN=client
