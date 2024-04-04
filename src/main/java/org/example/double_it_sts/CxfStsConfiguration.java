@@ -47,8 +47,8 @@ public class CxfStsConfiguration {
         endpoint.setPublishedEndpointUrl("http://localhost:8080/services/sts");
 
         endpoint.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-service"));
-        endpoint.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
-        endpoint.getProperties().put(SIGNATURE_USERNAME, "client");
+        endpoint.getProperties().put(SIGNATURE_PROPERTIES, "stsstore.properties");
+        endpoint.getProperties().put(SIGNATURE_USERNAME, "sts");
 
         endpoint.publish("/sts");
         return endpoint;

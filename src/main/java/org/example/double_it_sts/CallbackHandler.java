@@ -24,7 +24,7 @@ public class CallbackHandler implements javax.security.auth.callback.CallbackHan
                         pc.setPassword("changeit");
                     }
                     if ("sts".equals(pc.getIdentifier())) {
-                        pc.setPassword("sts");
+                        pc.setPassword("changeit");
                     }
                 } else if (pc.getUsage() == WSPasswordCallback.USERNAME_TOKEN) {
                     // UsernameToken auth only
