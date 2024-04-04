@@ -23,8 +23,9 @@ public class CxfStsConfiguration {
     @Bean
     public SecurityTokenServiceProvider securityTokenServiceProvider() {
         final var provider = new DefaultSecurityTokenServiceProvider();
-        
+
         final var stsProperties = new StaticSTSProperties();
+        stsProperties.setIssuer("DoubleItSTSIssuer");
         stsProperties.setCallbackHandler(new ClientCallbackHandler());
         stsProperties.setEncryptionCryptoProperties("clientstore.properties");
         stsProperties.setEncryptionUsername("client");
@@ -32,7 +33,7 @@ public class CxfStsConfiguration {
         stsProperties.setSignatureUsername("client");
         stsProperties.configureProperties();
         provider.setStsProperties(stsProperties);
-        
+
         final var service = new StaticService();
         service.setEndpoints(List.of("http://localhost:8080/services/double-it"));
         provider.setServices(List.of(service));

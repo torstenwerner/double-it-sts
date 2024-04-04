@@ -1,6 +1,9 @@
 package org.example.double_it_sts;
 
 import org.apache.wss4j.common.ext.WSPasswordCallback;
+import org.apache.wss4j.common.saml.SAMLCallback;
+import org.apache.wss4j.common.saml.bean.SubjectBean;
+import org.opensaml.saml.common.SAMLVersion;
 
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -22,6 +25,9 @@ public class ClientCallbackHandler implements CallbackHandler {
                         pc.setPassword("clarinet");
                     }
                 }
+            } else if (callback instanceof SAMLCallback samlCallback) {
+                samlCallback.setSamlVersion(SAMLVersion.VERSION_20);
+                samlCallback.setSubject(new SubjectBean());
             }
         }
     }
