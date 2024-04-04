@@ -26,10 +26,10 @@ public class CxfStsConfiguration {
         final var stsProperties = new StaticSTSProperties();
         stsProperties.setIssuer("http://localhost:8080/services/sts");
         stsProperties.setCallbackHandler(new CallbackHandler("sts-provider"));
-        stsProperties.setEncryptionCryptoProperties("serverstore.properties");
+        stsProperties.setEncryptionCryptoProperties("stsstore.properties");
         stsProperties.setEncryptionUsername("server");
-        stsProperties.setSignatureCryptoProperties("serverstore.properties");
-        stsProperties.setSignatureUsername("server");
+        stsProperties.setSignatureCryptoProperties("stsstore.properties");
+        stsProperties.setSignatureUsername("sts");
         provider.setStsProperties(stsProperties);
 
         final var service = new StaticService();
