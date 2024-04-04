@@ -17,6 +17,9 @@ public class CallbackHandler implements javax.security.auth.callback.CallbackHan
             if (callback instanceof WSPasswordCallback pc) {
                 if (pc.getUsage() == WSPasswordCallback.DECRYPT ||
                     pc.getUsage() == WSPasswordCallback.SIGNATURE) {
+                    if ("user".equals(pc.getIdentifier())) {
+                        pc.setPassword("changeit");
+                    }
                     if ("client".equals(pc.getIdentifier())) {
                         pc.setPassword("changeit");
                     }

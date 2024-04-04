@@ -49,6 +49,8 @@ public class CxfStsConfiguration {
         endpoint.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-service"));
         endpoint.getProperties().put(SIGNATURE_PROPERTIES, "stsstore.properties");
         endpoint.getProperties().put(SIGNATURE_USERNAME, "sts");
+        endpoint.getProperties().put(ENCRYPT_PROPERTIES, "stsstore.properties");
+        endpoint.getProperties().put(ENCRYPT_USERNAME, "user"); // ???
 
         endpoint.publish("/sts");
         return endpoint;

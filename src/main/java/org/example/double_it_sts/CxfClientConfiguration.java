@@ -29,7 +29,10 @@ public class CxfClientConfiguration {
 
         stsClient.getProperties().put(USERNAME, "alice");
         stsClient.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-client"));
-        stsClient.getProperties().put(ENCRYPT_PROPERTIES, "clientstore.properties");
+        // username + password based authentication
+//        stsClient.getProperties().put(ENCRYPT_PROPERTIES, "clientstore.properties");
+        // certificate based authentication
+        stsClient.getProperties().put(ENCRYPT_PROPERTIES, "userstore.properties");
         stsClient.getProperties().put(ENCRYPT_USERNAME, "sts");
 
         stsClient.setFeatures(List.of(loggingFeature));
@@ -51,8 +54,9 @@ public class CxfClientConfiguration {
         final var requestContext = ((BindingProvider) port).getRequestContext();
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/services/double-it");
         requestContext.put(STS_CLIENT, stsClient);
-//        requestContext.put(SIGNATURE_PROPERTIES, "clientstore.properties");
-//        requestContext.put(SIGNATURE_USERNAME, "server");
+        // certificate based authentication
+        requestContext.put(SIGNATURE_PROPERTIES, "userstore.properties");
+        requestContext.put(SIGNATURE_USERNAME, "user");
 
         return port;
     }
