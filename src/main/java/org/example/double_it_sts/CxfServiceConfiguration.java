@@ -18,6 +18,8 @@ public class CxfServiceConfiguration {
         endpoint.getProperties().put(CALLBACK_HANDLER, new ClientCallbackHandler());
         endpoint.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
         endpoint.getProperties().put(SIGNATURE_USERNAME, "client");
+        endpoint.getProperties().put(ENCRYPT_PROPERTIES, "clientstore.properties");
+        endpoint.getProperties().put(ENCRYPT_USERNAME, "client");
 
         endpoint.publish("/double-it");
         return endpoint;

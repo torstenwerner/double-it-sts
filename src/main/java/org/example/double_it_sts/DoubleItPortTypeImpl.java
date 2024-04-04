@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service("service")
 @WebService(targetNamespace = "http://www.example.org/contract/DoubleIt",
+        wsdlLocation = "classpath:DoubleIt.wsdl",
         portName = "DoubleItPort",
         serviceName = "DoubleItService",
         endpointInterface = "org.example.contract.doubleit.DoubleItPortType")
