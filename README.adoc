@@ -3,6 +3,7 @@
 This project implements a webservice security sample with an STS for authentication.
 It uses the Apache CXF framework.
 Please read the Javadoc of the individual classes for additional information.
+The actual DoubleIt service is very simple: it doubles a number.
 
 The service address is: http://localhost:8080/services/double-it?wsdl
 
