@@ -29,11 +29,7 @@ repositories {
     // A mirror of the Shibboleth maven repository for newer opensaml artifacts.
     maven {
         name = 'Shibboleth Maven Releases'
-        credentials {
-            username wpsRepositoryUser
-            password wpsRepositoryPassword
-        }
-        url 'https://artifacts.westernacher.com/artifactory/build.shibboleth.net/'
+        url 'https://build.shibboleth.net/maven/releases/'
     }
 }
 
