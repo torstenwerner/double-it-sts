@@ -3,6 +3,7 @@ package org.example.double_it_sts;
 import jakarta.xml.ws.BindingProvider;
 import org.apache.cxf.Bus;
 import org.apache.cxf.ext.logging.LoggingFeature;
+import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.ws.security.trust.STSClient;
 import org.example.contract.doubleit.DoubleItPortType;
 import org.example.contract.doubleit.DoubleItService;
@@ -16,6 +17,8 @@ import static org.apache.cxf.rt.security.SecurityConstants.*;
 
 @Configuration
 public class CxfClientConfiguration {
+
+    private final LoggingFeature loggingFeature = new LoggingFeature();
 
     @Bean
     public STSClient stsClient(Bus bus, CleartextLogger cleartextLogger) {
@@ -33,7 +36,6 @@ public class CxfClientConfiguration {
         stsClient.getProperties().put(STS_TOKEN_PROPERTIES, "clientstore.properties");
         stsClient.getProperties().put(STS_TOKEN_USERNAME, "client");
 
-        final LoggingFeature loggingFeature = new LoggingFeature();
         stsClient.setFeatures(List.of(loggingFeature));
         stsClient.getInInterceptors().add(cleartextLogger);
         stsClient.getOutInterceptors().add(cleartextLogger);
@@ -42,12 +44,18 @@ public class CxfClientConfiguration {
     }
 
     @Bean("client")
-    public DoubleItPortType client(STSClient stsClient) {
-        final var service = new DoubleItService();
+    public DoubleItPortType client(STSClient stsClient, CleartextLogger cleartextLogger) {
+        final var service = new DoubleItService(loggingFeature);
         final var port = service.getDoubleItPort();
+
+        final var client = ClientProxy.getClient(port);
+        client.getInInterceptors().add(cleartextLogger);
+        client.getOutInterceptors().add(cleartextLogger);
+
         final var requestContext = ((BindingProvider) port).getRequestContext();
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/services/double-it");
         requestContext.put(STS_CLIENT, stsClient);
+
         return port;
     }
 }
