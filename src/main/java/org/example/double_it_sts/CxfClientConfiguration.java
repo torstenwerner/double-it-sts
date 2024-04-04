@@ -55,7 +55,6 @@ public class CxfClientConfiguration {
         final var requestContext = ((BindingProvider) port).getRequestContext();
         requestContext.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/services/double-it");
         requestContext.put(STS_CLIENT, stsClient);
-        requestContext.put(SAML_CALLBACK_HANDLER, new CallbackHandler("client"));
 
         return port;
     }
