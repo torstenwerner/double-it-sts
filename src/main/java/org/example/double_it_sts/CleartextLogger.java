@@ -19,6 +19,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 
+/**
+ * A CXF logging interceptor that logs before encryption / after decryption of the requests / responses.
+ */
 @Component
 public class CleartextLogger extends AbstractSoapInterceptor {
     private static final String LOG_SETUP = CleartextLogger.class.getName() + ".log-setup";

@@ -16,8 +16,14 @@ import java.util.List;
 
 import static org.apache.cxf.rt.security.SecurityConstants.*;
 
+/**
+ * Configures the STS.
+ */
 @Configuration
 public class CxfStsConfiguration {
+    /**
+     * Creates the SAML token provider.
+     */
     @SneakyThrows
     @Bean
     public SecurityTokenServiceProvider securityTokenServiceProvider() {
@@ -38,6 +44,9 @@ public class CxfStsConfiguration {
         return provider;
     }
 
+    /**
+     * Creates the endpoint for the STS.
+     */
     @Bean
     public Endpoint sts(Bus bus, SecurityTokenServiceProvider stsProvider) {
         final var endpoint = new EndpointImpl(bus, stsProvider);

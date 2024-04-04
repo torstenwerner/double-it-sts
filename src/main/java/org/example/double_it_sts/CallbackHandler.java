@@ -4,6 +4,11 @@ import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 import javax.security.auth.callback.Callback;
 
+/**
+ * Returns passwords for all keystores and the sample user 'alice'.
+ * Separate classes should be implemented for user, client, sts, and service.
+ * It is just one class to keep the project simple.
+ */
 public class CallbackHandler implements javax.security.auth.callback.CallbackHandler {
 
     private final String usage;

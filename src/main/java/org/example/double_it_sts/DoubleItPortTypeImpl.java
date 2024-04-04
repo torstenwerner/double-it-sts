@@ -4,6 +4,9 @@ import jakarta.jws.WebService;
 import org.example.contract.doubleit.DoubleItPortType;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implements the DoubleIt service.
+ */
 @Service("service")
 @WebService(targetNamespace = "http://www.example.org/contract/DoubleIt",
         wsdlLocation = "classpath:DoubleIt.wsdl",

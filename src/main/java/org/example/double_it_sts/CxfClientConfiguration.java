@@ -15,11 +15,17 @@ import java.util.List;
 
 import static org.apache.cxf.rt.security.SecurityConstants.*;
 
+/**
+ * Configures the client side and the STS client.
+ */
 @Configuration
 public class CxfClientConfiguration {
 
     private final LoggingFeature loggingFeature = new LoggingFeature();
 
+    /**
+     * Creates the STS client needed for authentication.
+     */
     @Bean
     public STSClient stsClient(Bus bus, CleartextLogger cleartextLogger) {
         final var stsClient = new STSClient(bus);
@@ -42,6 +48,9 @@ public class CxfClientConfiguration {
         return stsClient;
     }
 
+    /**
+     * Creates the webservice client.
+     */
     @Bean("client")
     public DoubleItPortType client(STSClient stsClient, CleartextLogger cleartextLogger) {
         final var service = new DoubleItService(loggingFeature);

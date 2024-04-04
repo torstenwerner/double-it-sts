@@ -1,14 +1,19 @@
 = Sample soap service and client secured by an STS (secure token service)
 
-Service address: http://localhost:8080/services/double-it?wsdl
+This project implements a webservice security sample with an STS for authentication.
+It uses the Apache CXF framework.
+Please read the Javadoc of the individual classes for additional information.
 
-STS addresses:
+The service address is: http://localhost:8080/services/double-it?wsdl
+
+The STS addresses are:
 
 . http://localhost:8080/services/sts?wsdl
 . http://localhost:8080/services/sts/mex?wsdl
 
-== Create keystores
+== Create new keystores
 
+Pre-created keystores are committed to the git repository.
 How to create fresh keystores:
 
 ----
@@ -16,10 +21,12 @@ keytool -genkey -keystore src/main/resources/userstore.p12 -alias user -storepas
 keytool -genkey -keystore src/main/resources/clientstore.p12 -alias client -storepass changeit -keyalg RSA -validity 3650 -dname CN=client
 keytool -genkey -keystore src/main/resources/stsstore.p12 -alias sts -storepass changeit -keyalg RSA -validity 3650 -dname CN=sts
 keytool -genkey -keystore src/main/resources/serverstore.p12 -alias server -storepass changeit -keyalg RSA -validity 3650 -dname CN=server
+
 keytool -exportcert -keystore src/main/resources/userstore.p12 -alias user -storepass changeit -file user.cer
 keytool -exportcert -keystore src/main/resources/serverstore.p12 -alias server -storepass changeit -file server.cer
 keytool -exportcert -keystore src/main/resources/stsstore.p12 -alias sts -storepass changeit -file sts.cer
 keytool -exportcert -keystore src/main/resources/clientstore.p12 -alias client -storepass changeit -file client.cer
+
 keytool -importcert -keystore src/main/resources/serverstore.p12 -alias sts -storepass changeit -file sts.cer -noprompt
 keytool -importcert -keystore src/main/resources/serverstore.p12 -alias client -storepass changeit -file client.cer -noprompt
 keytool -importcert -keystore src/main/resources/stsstore.p12 -alias user -storepass changeit -file user.cer -noprompt

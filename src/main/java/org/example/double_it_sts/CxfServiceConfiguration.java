@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 
 import static org.apache.cxf.rt.security.SecurityConstants.*;
 
+/**
+ * Creates the endpoint for the DoubleIt service.
+ */
 @Configuration
 public class CxfServiceConfiguration {
     @Bean
