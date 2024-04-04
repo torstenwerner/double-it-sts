@@ -62,7 +62,8 @@ public class CxfClientConfiguration {
         client.getInInterceptors().add(new WSS4JInInterceptor(inProps));
         final Map<String, Object> outProps = Map.of(
                 WSHandlerConstants.ACTION, WSHandlerConstants.SAML_TOKEN_UNSIGNED,
-                WSHandlerConstants.SAML_CALLBACK_REF, new ClientCallbackHandler());
+                WSHandlerConstants.SAML_CALLBACK_REF, new ClientCallbackHandler()
+        );
         client.getOutInterceptors().add(new WSS4JOutInterceptor(outProps));
 
         final var requestContext = ((BindingProvider) port).getRequestContext();

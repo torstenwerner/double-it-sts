@@ -27,7 +27,9 @@ public class ClientCallbackHandler implements CallbackHandler {
                 }
             } else if (callback instanceof SAMLCallback samlCallback) {
                 samlCallback.setSamlVersion(SAMLVersion.VERSION_20);
-                samlCallback.setSubject(new SubjectBean());
+                final var subject = new SubjectBean();
+                subject.setSubjectConfirmationMethod("urn:oasis:names:tc:SAML:2.0:cm:holder-of-key");
+                samlCallback.setSubject(subject);
             }
         }
     }
