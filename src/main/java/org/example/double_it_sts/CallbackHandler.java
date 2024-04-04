@@ -6,9 +6,14 @@ import org.apache.wss4j.common.saml.bean.SubjectBean;
 import org.opensaml.saml.common.SAMLVersion;
 
 import javax.security.auth.callback.Callback;
-import javax.security.auth.callback.CallbackHandler;
 
-public class ClientCallbackHandler implements CallbackHandler {
+public class CallbackHandler implements javax.security.auth.callback.CallbackHandler {
+
+    private final String usage;
+
+    public CallbackHandler(String usage) {
+        this.usage = usage;
+    }
 
     public void handle(Callback[] callbacks) {
         for (Callback callback : callbacks) {
@@ -30,7 +35,15 @@ public class ClientCallbackHandler implements CallbackHandler {
                 final var subject = new SubjectBean();
                 subject.setSubjectConfirmationMethod("urn:oasis:names:tc:SAML:2.0:cm:holder-of-key");
                 samlCallback.setSubject(subject);
+                samlCallback.setIssuer("uff");
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "CallbackHandler{" +
+               "usage='" + usage + '\'' +
+               '}';
     }
 }

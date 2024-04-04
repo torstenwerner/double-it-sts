@@ -25,8 +25,8 @@ public class CxfStsConfiguration {
         final var provider = new DefaultSecurityTokenServiceProvider();
 
         final var stsProperties = new StaticSTSProperties();
-        stsProperties.setIssuer("DoubleItSTSIssuer");
-        stsProperties.setCallbackHandler(new ClientCallbackHandler());
+        stsProperties.setIssuer("http://localhost:8080/services/sts");
+        stsProperties.setCallbackHandler(new CallbackHandler("sts-provider"));
         stsProperties.setEncryptionCryptoProperties("clientstore.properties");
         stsProperties.setEncryptionUsername("client");
         stsProperties.setSignatureCryptoProperties("clientstore.properties");
@@ -49,7 +49,7 @@ public class CxfStsConfiguration {
         endpoint.setBindingUri(SOAPBinding.SOAP12HTTP_BINDING);
         endpoint.setPublishedEndpointUrl("http://localhost:8080/services/sts");
 
-        endpoint.getProperties().put(CALLBACK_HANDLER, new ClientCallbackHandler());
+        endpoint.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-service"));
         endpoint.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
         endpoint.getProperties().put(SIGNATURE_USERNAME, "client");
 
