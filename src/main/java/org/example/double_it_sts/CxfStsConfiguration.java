@@ -31,7 +31,6 @@ public class CxfStsConfiguration {
         stsProperties.setEncryptionUsername("client");
         stsProperties.setSignatureCryptoProperties("clientstore.properties");
         stsProperties.setSignatureUsername("client");
-        stsProperties.configureProperties();
         provider.setStsProperties(stsProperties);
 
         final var service = new StaticService();
@@ -46,7 +45,6 @@ public class CxfStsConfiguration {
         endpoint.setWsdlLocation("DoubleSTSService.wsdl");
         endpoint.setServiceName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}SecurityTokenService"));
         endpoint.setEndpointName(QName.valueOf("{http://docs.oasis-open.org/ws-sx/ws-trust/200512/}STS_Port"));
-        endpoint.setBindingUri(SOAPBinding.SOAP12HTTP_BINDING);
         endpoint.setPublishedEndpointUrl("http://localhost:8080/services/sts");
 
         endpoint.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-service"));

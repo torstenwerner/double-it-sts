@@ -31,10 +31,6 @@ public class CxfClientConfiguration {
         stsClient.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("sts-client"));
         stsClient.getProperties().put(ENCRYPT_PROPERTIES, "clientstore.properties");
         stsClient.getProperties().put(ENCRYPT_USERNAME, "client");
-        stsClient.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
-        stsClient.getProperties().put(SIGNATURE_USERNAME, "client");
-        stsClient.getProperties().put(STS_TOKEN_PROPERTIES, "clientstore.properties");
-        stsClient.getProperties().put(STS_TOKEN_USERNAME, "client");
 
         stsClient.setFeatures(List.of(loggingFeature));
         stsClient.getInInterceptors().add(cleartextLogger);
