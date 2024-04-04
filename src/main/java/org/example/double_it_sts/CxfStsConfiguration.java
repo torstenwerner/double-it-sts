@@ -1,7 +1,6 @@
 package org.example.double_it_sts;
 
 import jakarta.xml.ws.Endpoint;
-import jakarta.xml.ws.soap.SOAPBinding;
 import lombok.SneakyThrows;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -27,10 +26,10 @@ public class CxfStsConfiguration {
         final var stsProperties = new StaticSTSProperties();
         stsProperties.setIssuer("http://localhost:8080/services/sts");
         stsProperties.setCallbackHandler(new CallbackHandler("sts-provider"));
-        stsProperties.setEncryptionCryptoProperties("clientstore.properties");
-        stsProperties.setEncryptionUsername("client");
-        stsProperties.setSignatureCryptoProperties("clientstore.properties");
-        stsProperties.setSignatureUsername("client");
+        stsProperties.setEncryptionCryptoProperties("serverstore.properties");
+        stsProperties.setEncryptionUsername("server");
+        stsProperties.setSignatureCryptoProperties("serverstore.properties");
+        stsProperties.setSignatureUsername("server");
         provider.setStsProperties(stsProperties);
 
         final var service = new StaticService();

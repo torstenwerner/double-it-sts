@@ -20,6 +20,9 @@ public class CallbackHandler implements javax.security.auth.callback.CallbackHan
                     if ("client".equals(pc.getIdentifier())) {
                         pc.setPassword("changeit");
                     }
+                    if ("server".equals(pc.getIdentifier())) {
+                        pc.setPassword("changeit");
+                    }
                     if ("sts".equals(pc.getIdentifier())) {
                         pc.setPassword("sts");
                     }

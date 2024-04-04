@@ -16,8 +16,8 @@ public class CxfServiceConfiguration {
         EndpointImpl endpoint = new EndpointImpl(bus, service);
 
         endpoint.getProperties().put(CALLBACK_HANDLER, new CallbackHandler("service"));
-        endpoint.getProperties().put(SIGNATURE_PROPERTIES, "clientstore.properties");
-        endpoint.getProperties().put(SIGNATURE_USERNAME, "client");
+        endpoint.getProperties().put(SIGNATURE_PROPERTIES, "serverstore.properties");
+        endpoint.getProperties().put(SIGNATURE_USERNAME, "server");
 
         endpoint.publish("/double-it");
         return endpoint;
